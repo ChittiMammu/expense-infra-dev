@@ -29,7 +29,7 @@ module "frontend" {
 }
 
 module "bastion" {
-  source = "../../terraform-aws-securitygroup"
+  source = "../../terraform-aws-sg-group"
   project_name = var.project_name
   environment = var.environment
   sg_description = "SG for Bastion Instances"
@@ -39,7 +39,7 @@ module "bastion" {
 }
 
 module "ansible" {
-  source = "../../terraform-aws-securitygroup"
+  source = "../../terraform-aws-sg-group"
   project_name = var.project_name
   environment = var.environment
   sg_description = "SG for Ansible Instances"
