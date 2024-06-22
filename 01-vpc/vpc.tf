@@ -1,5 +1,6 @@
 module "aws_vpc" {
-    source = "../../terraform-expense-vpc"
+    #source = "../../terraform-expense-vpc"
+    source = "git::https://github.com/ChittiMammu/terraform-expense-vpc.git?ref=main"
     project_name = var.project_name
     environment_name = var.environment
     common_tags = var.common_tags
