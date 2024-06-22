@@ -58,17 +58,6 @@ resource "aws_security_group_rule" "db_backend" {
   security_group_id = module.db.sg_id
 
 }
-
-# DB is accepting connections from backend
-resource "aws_security_group_rule" "db_backend" {
-  type              = "ingress"
-  from_port         = 3306
-  to_port           = 3306
-  protocol          = "tcp"
-  source_security_group_id = module.backend.sg_id # source is where you are getting traffic from
-  security_group_id = module.db.sg_id
-}
-
 resource "aws_security_group_rule" "db_bastion" {
   type              = "ingress"
   from_port         = 3306
