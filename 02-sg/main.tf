@@ -48,6 +48,18 @@ module "ansible" {
   sg_name = "ansible"
 }
 
+
+module "vpn" {
+  source = "../../terraform-aws-sg-group"
+  project_name = var.project_name
+  environment = var.environment
+  sg_description = "SG for VPN Instances"
+  vpc_id = data.aws_ssm_parameter.vpc_id.value
+  common_tags = var.common_tags
+  sg_name = "vpn"
+  ingress_rules = var.vpn_sg_rules
+}
+
 # DB is accepting connections from backend
 resource "aws_security_group_rule" "db_backend" {
   type              = "ingress"
@@ -138,4 +150,13 @@ resource "aws_security_group_rule" "ansible_public" {
   protocol          = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = module.ansible.sg_id
+}
+
+resource "aws_security_group_rule" "db_vpn" {
+  type              = "ingress"
+  from_port         = 3306
+  to_port           = 3306
+  protocol          = "tcp"
+  source_security_group_id = module.vpn.sg_id # source is where you are getting traffic from
+  security_group_id = module.db.sg_id
 }
