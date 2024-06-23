@@ -1,6 +1,3 @@
-
-## this is a custom module,we took this code from centralized github (internet)
-
 module "bastion" {
   source  = "terraform-aws-modules/ec2-instance/aws"
 
@@ -19,15 +16,3 @@ module "bastion" {
     }
   )
 }
-
-
-## A bastion server, also known as a jump server or jump host, is a secure, 
-# hardened server that acts as an entry point into a private network or cloud environment. 
-# It's typically used to access and manage servers, applications, or databases that are not exposed/accessed 
-# to the public internet.
-
-# A bastion server provides an additional layer of security by:
-
-# 1. Acting as a single entry point, reducing the attack surface.
-# 2. Providing secure access for administrators, developers, and users.
-  
