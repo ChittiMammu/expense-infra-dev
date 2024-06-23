@@ -62,7 +62,7 @@ module "vpn" {
 
 
 module "app_alb" {
-  source = "../../terraform-aws-securitygroup"
+  source = "../../terraform-aws-sg-group"
   project_name = var.project_name
   environment = var.environment
   sg_description = "SG for APP ALB Instances"
@@ -73,7 +73,7 @@ module "app_alb" {
 
 
 module "web_alb" {
-  source = "../../terraform-aws-securitygroup"
+  source = "../../terraform-aws-sg-group"
   project_name = var.project_name
   environment = var.environment
   sg_description = "SG for Web ALB Instances"
