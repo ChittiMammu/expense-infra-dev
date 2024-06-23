@@ -70,12 +70,13 @@ module "records" {
   version = "~> 2.0"
 
   zone_name = var.zone_name
-
+  
   records = [
     {
-      name    = "db"
+      name    = "db-${var.environment}"
       type    = "CNAME"
       ttl = 1
+      allow_overwrite = true
       records = [
         module.db.db_instance_address
       ]
